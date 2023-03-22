@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Guess the Code</title>
+</head>
+<body>
+	<h1>Guess the Code</h1>
+	<p>Enter the correct code to stop the timer!</p>
+	<div>
+		<label for="guess">Enter code:</label>
+		<input type="text" id="guess" name="guess">
+		<button onclick="checkGuess()">Submit</button>
+	</div>
+	<div>
+		<p>Time: <span id="timer">0</span></p>
+	</div>
+	<script>
+		// define game variables
+		const code = "1234"; // the correct code
+		let time = 0; // time in seconds
+		let interval; // interval id for timer
+		
+		// start the game timer
+		function startTimer() {
+			interval = setInterval(() => {
+				time++;
+				document.getElementById("timer").innerHTML = time;
+			}, 1000);
+		}
+		
+		// check the player's guess
+		function checkGuess() {
+			const guess = document.getElementById("guess").value;
+			if (guess === code) {
+				stopTimer();
+				alert(`Congratulations! You stopped the timer in ${time} seconds.`);
+			} else {
+				alert("Sorry, that is incorrect.");
+			}
+		}
+		
+		// stop the game timer
+		function stopTimer() {
+			clearInterval(interval);
+		}
+		
+		// start the game when the page loads
+		startTimer();
+	</script>
+</body>
+</html>
